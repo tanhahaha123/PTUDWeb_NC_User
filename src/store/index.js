@@ -14,7 +14,7 @@ const axiosApiInstance = axios.create();
 axiosApiInstance.interceptors.request.use(
   async config => {
     let a= JSON.parse(localStorage.getItem("user"));
-    console.log("Request: ",a);
+    //console.log("Request: ",a);
     //const keys = JSON.parse(value)
     if(a){
       config.headers = { 
@@ -373,8 +373,8 @@ export default new Vuex.Store({
       // for(const i in payload.source){
       //   payload[i].NgayGiaoDich=moment(payload[i].NgayGiaoDich, 'YYYY-MM-DD').format('DD/MM/YYYY');
       // }
-      console.log("GET_DEBT_REMINDER_SUCCESS");
-      console.log(payload.source);
+      //console.log("GET_DEBT_REMINDER_SUCCESS");
+      //console.log(payload.source);
       state.status = { getDebtReminderSuccess: true}
       state.debtReminderTable=payload;
     },
@@ -418,7 +418,7 @@ export default new Vuex.Store({
         "https://bank25.herokuapp.com/api/internal/transaction/ReceiveTransaction/" +
           user.SourceAccountNumber
       );
-      console.log(user.SourceAccountNumber);
+      //console.log(user.SourceAccountNumber);
       ctx.commit("GET_RECEIVE_HISTORY", Object.values(respone.data));
     },
     //lay lich su chuyen khoan
@@ -455,7 +455,7 @@ export default new Vuex.Store({
       const detail = await axiosApiInstance.get(
         "https://bank25.herokuapp.com/api/internal/accountbank/detail/" + user.SourceAccountNumber
       );
-      console.log(">>>>>>>>>>>>>>>>"+detail.data[0].idTaiKhoanKhachHang);
+      //console.log(">>>>>>>>>>>>>>>>"+detail.data[0].idTaiKhoanKhachHang);
 
       const respone = await axiosApiInstance.get(
         "https://bank25.herokuapp.com/api/internal/accountbank/UserAccountsList/"+detail.data[0].idTaiKhoanKhachHang
@@ -466,7 +466,7 @@ export default new Vuex.Store({
     },
     //lay thong tin stk thanh toan
     async getUserPaymentDetail(ctx, stkThanhToan) {
-      console.log(stkThanhToan);
+      //console.log(stkThanhToan);
       const respone = await axiosApiInstance.get(
         "https://bank25.herokuapp.com/api/internal/paymentaccount/detail/" +
           stkThanhToan
@@ -482,7 +482,7 @@ export default new Vuex.Store({
         );
         result.push(Object.values(respone.data)[0]);
       }
-      console.log(result);
+      //console.log(result);
       ctx.commit('GET_USER_SAVING_DETAIL',result);
     },
 
@@ -862,7 +862,7 @@ export default new Vuex.Store({
       ctx.commit("GET_DEBT_REMINDER_REQUEST");
       const userSTK='258258258';
       const respone=await axiosApiInstance.get('https://bank25.herokuapp.com/api/internal/debt-reminder/'+userSTK);
-      console.log("respone: ",respone);
+      //console.log("respone: ",respone);
       if(respone.data.err){
         //ctx.commit('GET_DEBT_REMINDER_FAILED',respone.data);
       }else{
@@ -872,15 +872,15 @@ export default new Vuex.Store({
     },
     // Hủy một dòng nhắc nợ bất kì
     async removeDebtReminder(ctx, {item, message}){
-      console.log("removeDebtReminder");
+      //console.log("removeDebtReminder");
       const payload={
         idGiaoDichNhacNo: item.idGiaoDichNhacNo,
         NoiDung: message,
         stk: item.SoTaiKhoanNguoiNhan
       };
-      console.log("removeDebtReminder");
+      //console.log("removeDebtReminder");
       const respone=await axiosApiInstance.put('https://bank25.herokuapp.com/api/internal/debt-reminder/', JSON.parse(payload));
-      console.log("removeDebtReminder");
+      //console.log("removeDebtReminder");
       ctx.commit('REMOVE_DEBT_REMINDER',respone.data);
     },
     // Lấy danh sách tài khoản
