@@ -9,27 +9,27 @@
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/dashboard">
         <md-icon>dashboard</md-icon>
-        <p>Bảng điều khiển</p>
+        <p>Trang chủ</p>
       </sidebar-link>
       <sidebar-link to="/user">
         <md-icon>person</md-icon>
-        <p>Hồ sơ cá nhân</p>
+        <p>Thông tin cá nhân</p>
       </sidebar-link>
       <sidebar-link to="/accounts">
         <md-icon>content_paste</md-icon>
-        <p>Danh sách tài khoản</p>
+        <p>Danh sách các tài khoản</p>
       </sidebar-link>
       <sidebar-link to="/tranferList">
         <md-icon>multiple_stop</md-icon>
-        <p>Danh sách thụ hưởng</p>
+        <p>Danh sách chuyển khoản</p>
       </sidebar-link>
       <sidebar-link to="/moneyTranfer">
         <md-icon>attach_money</md-icon>
-        <p>Chuyển khoản</p>
+        <p>Chuyển tiền</p>
       </sidebar-link>
       <sidebar-link to="/debtReminder">
         <md-icon>more_time</md-icon>
-        <p>Quản lý nhắc nợ</p>
+        <p>Nhắc nợ</p>
       </sidebar-link>
       <sidebar-link to="/notifications">
         <md-icon>notifications</md-icon>
@@ -67,6 +67,9 @@ export default {
     DashboardContent,
     MobileMenu,
     FixedPlugin
+  },
+  created(){
+    this.$store.dispatch('getAndsetuserId','$%ldjlfdfldf');
   },
   data() {
     return {

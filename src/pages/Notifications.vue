@@ -147,6 +147,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -160,8 +161,7 @@ export default {
     notifyVue(verticalAlign, horizontalAlign) {
       var color = Math.floor(Math.random() * 4 + 1);
       this.$notify({
-        message:
-          "Welcome to <b>Material Dashboard</b> - a beautiful freebie for every web developer.",
+        message: "123",
         icon: "add_alert",
         horizontalAlign: horizontalAlign,
         verticalAlign: verticalAlign,

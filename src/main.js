@@ -1,5 +1,3 @@
-import "@babel/polyfill";
-import "mutationobserver-shim";
 // =========================================================
 // * Vue Material Dashboard - v1.4.0
 // =========================================================
@@ -17,12 +15,12 @@ import "mutationobserver-shim";
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue";
-import "./plugins/bootstrap-vue";
 import VueRouter from "vue-router";
+import veeValidate from "vee-validate";
 import App from "./App";
 
 // router setup
-import routes from "./routes/routes";
+import { router } from "./routes/routes";
 
 // Plugins
 import GlobalComponents from "./globalComponents";
@@ -34,13 +32,21 @@ import MaterialDashboard from "./material-dashboard";
 
 import Chartist from "chartist";
 
-import store from './store';
+import store from "./store";
 
-// configure router
-const router = new VueRouter({
-  routes, // short for routes: routes
-  linkExactActiveClass: "nav-item active"
-});
+// // configure router
+// const router = new VueRouter({
+//   routes, // short for routes: routes
+//   linkExactActiveClass: "nav-item active"
+// });
+
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
 
 Vue.prototype.$Chartist = Chartist;
 
@@ -49,6 +55,7 @@ Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
+Vue.use(veeValidate);
 
 /* eslint-disable no-new */
 new Vue({

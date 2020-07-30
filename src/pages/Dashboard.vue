@@ -211,7 +211,7 @@ import {
   NavTabsTable,
   OrderedTable
 } from "@/components";
-
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
     StatsCard,
@@ -307,6 +307,13 @@ export default {
         ]
       }
     };
+  },
+  created() {},
+  methods: {
+    ...mapActions("account", ["logout"])
+  },
+  computed: {
+    ...mapState(["debtReminderTable"])
   }
 };
 </script>

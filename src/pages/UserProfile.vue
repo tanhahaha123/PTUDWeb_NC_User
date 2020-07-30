@@ -18,6 +18,9 @@ export default {
   components: {
     EditProfileForm,
     UserCard
+  },
+  created(){
+    this.$store.dispatch('getThongTinKhachHang');
   }
 };
 </script>
