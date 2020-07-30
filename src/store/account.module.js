@@ -1,7 +1,7 @@
 import { userService } from "../services";
 import { router } from "../routes/routes";
 
-console.log(localStorage.getItem("user"));
+//console.log(localStorage.getItem("user"));
 const user = JSON.parse(localStorage.getItem("user"));
 const state = user
   ? { status: { loggedIn: true }, user }
@@ -60,14 +60,14 @@ const actions = {
 
     userService.forgetPassword({ email, username }).then(
       user => {
-        console.log("forgetPasswordSuccess");
+        //console.log("forgetPasswordSuccess");
         commit("forgetPasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
         router.push("forgetpassword1");
       },
       error => {
-        console.log("forgetPasswordFailure");
-        console.log("err:", error.message);
+        //console.log("forgetPasswordFailure");
+        //console.log("err:", error.message);
         commit("forgetPasswordFailure", error);
         dispatch("alert/error", error.message, { root: true });
       }
@@ -81,14 +81,14 @@ const actions = {
 
     userService.forgetPassword1(codeotp).then(
       user => {
-        console.log("forgetPasswordSuccess");
+        //console.log("forgetPasswordSuccess");
         commit("forgetPasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
         router.push("changepassword");
       },
       error => {
-        console.log("forgetPasswordFailure");
-        console.log("err:", error.message);
+        //console.log("forgetPasswordFailure");
+        //console.log("err:", error.message);
         commit("forgetPasswordFailure", error);
         dispatch("alert/error", error.message, { root: true });
       }
@@ -102,14 +102,14 @@ const actions = {
 
     userService.changePassword(password).then(
       user => {
-        console.log("changePasswordSuccess");
+        //console.log("changePasswordSuccess");
         commit("changePasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
         router.push("dashboard");
       },
       error => {
-        console.log("changePasswordFailure");
-        console.log("err:", error.message);
+        //console.log("changePasswordFailure");
+        //console.log("err:", error.message);
         commit("changePasswordFailure", error);
         dispatch("alert/error", error.message, { root: true });
       }
