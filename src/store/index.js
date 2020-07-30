@@ -50,19 +50,10 @@ axiosApiInstance.interceptors.response.use((response) => {
       // console.log("Log: ", e.response);
     }
     
-    // console.log("AccessToken: ", accessToken);
-    // if(response.data.err){
-    //   // this.$store.dispatch()
-    //   router.push("login");
-    // }else{
-    //   // commit('ADD_DEBT_REMINDER_SUCCESS',respone.data);
-    //   // router.push("debtReminder");
-    // }        
-    // const localStore = JSON.parse(localStorage.getItem("user"));
-    // localStore.response.accessToken = accessToken.data;
-    // //console.log("localStore: ", localStore.response);
-    // localStorage.setItem("user", JSON.stringify(localStore));  
-    //axios.defaults.headers.common['x-access-token'] = accessToken.data;
+    const localStore = JSON.parse(localStorage.getItem("user"));
+    localStore.response.accessToken = response.data.AccessToken
+    //console.log("localStore: ", localStore.response);
+    localStorage.setItem("user", JSON.stringify(localStore)); 
     
     return axiosApiInstance(originalRequest);
   }
