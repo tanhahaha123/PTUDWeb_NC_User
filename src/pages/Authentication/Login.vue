@@ -44,7 +44,7 @@
                 <!-- Tài khoản -->
                 <md-field class="md-form-group" slot="inputs">
                   <md-icon>email</md-icon>
-                  <label>Email...</label>
+                  <label>Username...</label>
                   <md-input
                     name="username"
                     v-validate="'required'"
@@ -81,9 +81,10 @@
                 >
                   {{ errors.first("password") }}
                 </p>
-                <div slot="footer">
+                <div style="width: 60%" slot="footer">
                   <!-- Đăng nhập button -->
                   <md-button
+                    style="width: 100%"
                     :disabled="status.loggingIn"
                     class="md-primary md-success"
                     type="submit"
@@ -91,9 +92,9 @@
                     Đăng nhập
                   </md-button>
                   <!-- Đăng kí btt -->
-                  <md-button to="/register" class="md-primary md-success">
+                  <!-- <md-button to="/register" class="md-primary md-success">
                     Register
-                  </md-button>
+                  </md-button> -->
                 </div>
                 <div slot="footer">
                   <md-progress-spinner
@@ -104,11 +105,12 @@
                   ></md-progress-spinner>
                 </div>
                 <div class="md-primary md-success" slot="footer">
+                  <br>
                   <vue-recaptcha
                     ref="recaptcha"
                     @verify="onCaptchaVerified"
                     @expired="onCaptchaExpired"
-                    sitekey="6LdkNLgZAAAAALvBI4RWZVNOCmrE6mCi5BsNve4h"
+                    sitekey="6LeTS7YZAAAAAEWQ2IcQ6pVfhtuWIVh3-8Vog8lG"
                   >
                   </vue-recaptcha>
                 </div>
@@ -183,18 +185,18 @@ export default {
         }
       });
       if (username && password && captcha) {
-        this.login({ username, password, captcha }).then(response => {
+        this.login({ username, password, captcha }).catch(response => {
           this.$refs.recaptcha.reset();
         });
       }
       // this.submitted = false;
     },
     onCaptchaVerified: function(recaptchaToken) {
-      console.log(recaptchaToken);
+      // console.log(recaptchaToken);
       this.captcha = recaptchaToken;
     },
     onCaptchaExpired: function() {
-      console("expried");
+      // console("expried");
       this.$refs.recaptcha.reset();
     }
    }

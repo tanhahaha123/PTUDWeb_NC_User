@@ -1,7 +1,7 @@
 import { userService } from "../services";
 import { router } from "../routes/routes";
 
-//console.log(localStorage.getItem("user"));
+console.log(localStorage.getItem("user"));
 const user = JSON.parse(localStorage.getItem("user"));
 const state = user
   ? { status: { loggedIn: true }, user }
@@ -9,22 +9,41 @@ const state = user
 
 const actions = {
   // Đăng nhập
-  login({ dispatch, commit }, { username, password, captcha }) {
+  // login({ dispatch, commit }, { username, password, captcha }) { 
+  //   commit("loginRequest", { username });
+
+  //   userService.login(username, password, captcha).then(
+  //     user => {
+  //       // console.log("loginSuccess");
+  //       commit("loginSuccess", user);
+  //       // console.log("Redirect");
+  //       router.push("dashboard");
+  //     },
+  //     error => {
+  //       // console.log("err:", error.msg);
+  //       commit("loginFailure", error);
+  //       dispatch("alert/error", error.message, { root: true });
+  //     }
+  //   );
+  // },
+  async login({ dispatch, commit }, { username, password, captcha }) { //sau khi sửa captcha reset
     commit("loginRequest", { username });
 
-    userService.login(username, password, captcha).then(
-      user => {
-        // console.log("loginSuccess");
-        commit("loginSuccess", user);
-        // console.log("Redirect");
-        router.push("dashboard");
-      },
-      error => {
-        // console.log("err:", error.msg);
-        commit("loginFailure", error);
-        dispatch("alert/error", error.message, { root: true });
-      }
-    );
+    try {
+      let user = await userService.login(username, password, captcha);
+
+      //Lưu idTaiKhoanKhachHang vào VueX
+      commit("SET_ID_TAI_KHOAN_KHACH_HANG",JSON.parse(atob(user.response.accessToken.split('.')[1])).idTaiKhoanKhachHang,{ root: true });
+
+      // console.log("loginSuccess");
+      commit("loginSuccess", user);
+      // console.log("Redirect");
+      router.push("dashboard");
+    } catch(error) {
+      commit("loginFailure", error);
+      dispatch("alert/error", error.message, { root: true });
+      throw new Error(400);
+    }
   },
 
   // Đăng xuất
@@ -60,14 +79,14 @@ const actions = {
 
     userService.forgetPassword({ email, username }).then(
       user => {
-        //console.log("forgetPasswordSuccess");
+        console.log("forgetPasswordSuccess");
         commit("forgetPasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
         router.push("forgetpassword1");
       },
       error => {
-        //console.log("forgetPasswordFailure");
-        //console.log("err:", error.message);
+        console.log("forgetPasswordFailure");
+        console.log("err:", error.message);
         commit("forgetPasswordFailure", error);
         dispatch("alert/error", error.message, { root: true });
       }
@@ -81,14 +100,14 @@ const actions = {
 
     userService.forgetPassword1(codeotp).then(
       user => {
-        //console.log("forgetPasswordSuccess");
+        console.log("forgetPasswordSuccess");
         commit("forgetPasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
         router.push("changepassword");
       },
       error => {
-        //console.log("forgetPasswordFailure");
-        //console.log("err:", error.message);
+        console.log("forgetPasswordFailure");
+        console.log("err:", error.message);
         commit("forgetPasswordFailure", error);
         dispatch("alert/error", error.message, { root: true });
       }
@@ -102,14 +121,14 @@ const actions = {
 
     userService.changePassword(password).then(
       user => {
-        //console.log("changePasswordSuccess");
+        console.log("changePasswordSuccess");
         commit("changePasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
         router.push("dashboard");
       },
       error => {
-        //console.log("changePasswordFailure");
-        //console.log("err:", error.message);
+        console.log("changePasswordFailure");
+        console.log("err:", error.message);
         commit("changePasswordFailure", error);
         dispatch("alert/error", error.message, { root: true });
       }

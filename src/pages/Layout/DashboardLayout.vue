@@ -68,9 +68,6 @@ export default {
     MobileMenu,
     FixedPlugin
   },
-  created(){
-    this.$store.dispatch('getAndsetuserId','$%ldjlfdfldf');
-  },
   data() {
     return {
       sidebarBackground: "green",

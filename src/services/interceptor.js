@@ -29,7 +29,7 @@ axios.interceptors.response.use((response) => {
    const originalRequest = error.config;
 
    if (error.response.status === 401 && originalRequest.url === 
-'http://13.232.130.60:8081/v1/auth/token) {
+'http://13.232.130.60:8081/v1/auth/token') {
        router.push('/login');
        return Promise.reject(error);
    }
