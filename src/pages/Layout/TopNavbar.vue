@@ -86,7 +86,7 @@
             <!-- Hiển thị Icon đăng nhập ( đang đăng nhập hay chưa đăng nhập) -->
             <li class="md-list-item" v-if="userInfo">
               <a
-                href="#/user"
+                
                 class="md-list-item-router md-list-item-container md-button-clean dropdown"
               >
                 <div class="md-list-item-content">

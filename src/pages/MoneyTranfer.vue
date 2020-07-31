@@ -1,36 +1,24 @@
 <template>
   <div class="content">
     <div class="md-layout">
-      <div class="md-layout-item">
-        <md-card class="md-card-plain">
-          <md-card-header data-background-color="green">
-            <h4 class="title">Material Design Icons</h4>
-            <p class="category">
-              Handcrafted by our friends from
-              <a target="_blank" href="https://design.google.com/icons/"
-                >Google</a
-              >
-            </p>
-          </md-card-header>
+      <div
+        class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
+      >
+        <nav-tabs-card>
+          <template slot="content">
+            <span class="md-nav-tabs-title" style="font-weight: bold;">chọn</span>
+            <md-tabs class="md-success" md-alignment="left">
+              <md-tab id="tab-home" md-label="Chuyển khoản cùng ngân hàng" md-icon="compare_arrows">
+                <chuyen-khoan-cung-ngan-hang></chuyen-khoan-cung-ngan-hang>
+              </md-tab>
 
-          <md-card-content>
-            <div class="iframe-container hidden-sm">
-              <iframe src="https://vuematerial.io/components/icon">
-                <p>Your browser does not support iframes.</p>
-              </iframe>
-            </div>
-            <div class="hidden-md">
-              <h5>
-                The icons are visible on Desktop mode inside an iframe. Since
-                the iframe is not working on Mobile and Tablets please visit the
-                icons on their original page on Google. Check the
-                <a href="https://design.google.com/icons/" target="_blank"
-                  >Material Icons</a
-                >
-              </h5>
-            </div>
-          </md-card-content>
-        </md-card>
+              <md-tab id="tab-pages" md-label="Chuyển khoản khác ngân hàng" md-icon="swap_horiz">
+                <chuyen-khoan-khac-ngan-hang></chuyen-khoan-khac-ngan-hang>
+              </md-tab>
+
+            </md-tabs>
+          </template>
+        </nav-tabs-card>
       </div>
     </div>
   </div>
@@ -44,6 +32,7 @@
 } from "@/components";
 export default {
   components: {
+    NavTabsCard
   },
   destroyed(){
     this.$store.dispatch('resetDanhSachNguoiThuHuongChuyenKhoan');

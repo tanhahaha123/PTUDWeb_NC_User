@@ -2,25 +2,18 @@
   <form>
     <md-card>
       <md-card-header :data-background-color="dataBackgroundColor">
-        <h4 class="title">Edit Profile</h4>
-        <p class="category">Complete your profile</p>
+        <h4 class="title">Thông tin cá nhân</h4>
       </md-card-header>
 
       <md-card-content>
         <div class="md-layout">
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Tên khách hàng</label>
               <md-input style="font-size: 1rem!important;" :value="ThongTinKhachHang.TenKhachHang" disabled></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
-            <md-field>
-              <label>User Name</label>
-              <md-input v-model="username" type="text"></md-input>
-            </md-field>
-          </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Giới tính</label>
               <md-input style="font-size: 1rem!important;" :value="ThongTinKhachHang.GioiTinh" disabled></md-input>
@@ -44,7 +37,7 @@
               <md-input style="font-size: 1rem!important;" :value="ThongTinKhachHang.DiaChi" disabled></md-input>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Số điện thoại liên hệ</label>
               <md-input style="font-size: 1rem!important;" :value="ThongTinKhachHang.SoDienThoai" :disabled="txtSoDienThoaiDisable"></md-input>
@@ -58,7 +51,7 @@
               </md-button>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Email</label>
               <md-input style="font-size: 1rem!important;" :value="ThongTinKhachHang.Email" :disabled="txtEmailDisable"></md-input>
@@ -72,7 +65,7 @@
               </md-button>
             </md-field>
           </div>
-          <div class="md-layout-item md-small-size-100 md-size-33">
+          <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Nghề nghiệp</label>
               <md-input style="font-size: 1rem!important;" :value="ThongTinKhachHang.NgheNghiep" :disabled="txtNgheNghiepDisable"></md-input>
@@ -87,7 +80,7 @@
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Update Profile</md-button>
+            <md-button class="md-raised md-success" :disabled="btnDataDisable">Cập nhật hồ sơ</md-button>
           </div>
         </div>
       </md-card-content>
@@ -96,7 +89,6 @@
 </template>
 <script>
   import { mapState, mapGetters } from 'vuex';
-
   export default {
     name: "edit-profile-form",
     props: {
@@ -110,29 +102,7 @@
         btnDataDisable: true,
         txtSoDienThoaiDisable: true,
         txtEmailDisable: true,
-        txtNgheNghiepDisable: true,
-        TenKhachHang: "Nguyễn Công Phượng",
-        GioiTinh: "Nam",
-        NgaySinh: "30/04/1989",
-        SoCMND: "763***937",
-        DiaChi: "606/37 Đường Ba Tháng Hai, Phường Từ Liêm, Tp. Hà Nội",
-        SoDienThoai: "0978954758",
-        oldSoDienThoai: "0978954758",
-        Email: "myaccount1@gmail.com",
-        oldEmail: "myaccount1@gmail.com",
-        NgheNghiep: "Sinh Viên",
-        oldNgheNghiep: "Sinh Viên",
-        username: null,
-        disabled: null,
-        emailadress: null,
-        lastname: null,
-        firstname: null,
-        address: null,
-        city: null,
-        country: null,
-        code: null,
-        aboutme:
-          "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+        txtNgheNghiepDisable: true
       };
     },
     computed: {
