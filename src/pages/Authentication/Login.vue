@@ -110,7 +110,7 @@
                     ref="recaptcha"
                     @verify="onCaptchaVerified"
                     @expired="onCaptchaExpired"
-                    sitekey="6LeTS7YZAAAAAEWQ2IcQ6pVfhtuWIVh3-8Vog8lG"
+                    sitekey="6LdkNLgZAAAAALvBI4RWZVNOCmrE6mCi5BsNve4h"
                   >
                   </vue-recaptcha>
                 </div>
