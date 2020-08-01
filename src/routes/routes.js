@@ -27,7 +27,7 @@ const routes = [
   {
     path: "/",
     component: DashboardLayout,
-    redirect: "/login",
+    redirect: "/dashboard",
     children: [
       {
         path: "dashboard",
@@ -106,6 +106,7 @@ router.beforeEach((to, from, next) => {
   //Kiểm tra đã login trong localStorage
   const loggedIn = localStorage.getItem("user");
 
+  if (!authRequired && loggedIn) return next("/dashboard");
   if (authRequired && !loggedIn) {
     return next("/login");
   }

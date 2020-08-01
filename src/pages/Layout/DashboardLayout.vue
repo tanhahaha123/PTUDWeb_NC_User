@@ -17,11 +17,11 @@
       </sidebar-link>
       <sidebar-link to="/accounts">
         <md-icon>content_paste</md-icon>
-        <p>Danh sách các tài khoản</p>
+        <p>Danh sách tài khoản</p>
       </sidebar-link>
       <sidebar-link to="/tranferList">
         <md-icon>multiple_stop</md-icon>
-        <p>Danh sách chuyển khoản</p>
+        <p>Danh sách người hưởng</p>
       </sidebar-link>
       <sidebar-link to="/moneyTranfer">
         <md-icon>attach_money</md-icon>

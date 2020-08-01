@@ -19,19 +19,19 @@
               <div class="md-layout-item md-small-size-100 md-size-100">
                 <md-field style="margin-bottom: 5px;">
                   <label>Mật khẩu cũ</label>
-                  <md-input v-model="MatKhauCu" required></md-input>
+                  <md-input id="MatKhauCu" v-model="MatKhauCu" required></md-input>
                 </md-field>
               </div>
               <div class="md-layout-item md-small-size-100 md-size-100">
                 <md-field style="margin-bottom: 5px;">
                   <label>Mật khẩu mới</label>
-                  <md-input v-model="MatKhauMoi" required></md-input>
+                  <md-input id="MatKhauMoi" v-model="MatKhauMoi" required></md-input>
                 </md-field>
               </div>
               <div class="md-layout-item md-small-size-100 md-size-100">
                 <md-field style="margin-bottom: 5px;">
                   <label>Nhập lại mật khẩu</label>
-                  <md-input v-model="NhapLaiMatKhau" required></md-input>
+                  <md-input id="NhapLaiMatKhau" v-model="NhapLaiMatKhau" required></md-input>
                 </md-field>
               </div>
               <div class="md-layout-item md-small-size-100 md-size-100 text-center">
@@ -119,8 +119,13 @@
         this.$store.dispatch('setDoiMatKhauThatBai',false);
         this.displayDoiMatKhau = !this.displayDoiMatKhau; 
       },
-      handleConfirmDoiMatKhau(){
-        if ((this.MatKhauCu=="")||(this.MatKhauMoi=="")||(this.NhapLaiMatKhau=="")) return;
+      handleConfirmDoiMatKhau(event){
+        if (
+        !document.getElementById('MatKhauCu').checkValidity() ||
+        !document.getElementById('MatKhauMoi').checkValidity() ||
+        !document.getElementById('NhapLaiMatKhau').checkValidity()) return false;//Nếu chưa validate 
+        // if ((this.MatKhauCu=="")||(this.MatKhauMoi=="")||(this.NhapLaiMatKhau=="")) return;
+        event.preventDefault();//ngăn chặn sự kiện mặc định của nút submit gửi request
         this.$store.dispatch('changeMatKhau',{"MatKhauCu":this.MatKhauCu,"MatKhauMoi":this.MatKhauMoi,"XacNhanMatKhau":this.NhapLaiMatKhau});
         this.displayDoiMatKhau = false;
         this.MatKhauCu="";
@@ -140,6 +145,9 @@
         this.$store.dispatch('setDoiMatKhauThatBai',false);
         this.displayDoiMatKhau=true;
       }
+    },
+    destroyed(){
+      this.$store.dispatch('resetThongTinKhachHang');
     }
   };
 </script>

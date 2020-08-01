@@ -36,6 +36,10 @@ export default {
       this.$store.dispatch('setSelectedTaiKhoanThanhToan',value);
       this.$store.dispatch('getDanhSachNguoiThuHuong',value);
     }
+  },
+  destroyed(){
+    this.$store.dispatch('resetSelectedTaiKhoanThanhToan');
+    this.$store.dispatch('resetDanhSachNguoiThuHuong');
   }
 };
 </script>
