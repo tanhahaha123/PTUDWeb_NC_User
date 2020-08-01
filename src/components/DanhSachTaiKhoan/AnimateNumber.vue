@@ -1,5 +1,6 @@
 <template>
   <animate-number
+    ref="myNum"
     mode="auto"
     :from="from"
     :to="to"
@@ -26,6 +27,12 @@ export default {
     duration: {
       type: Number,
       default: 5000
+    }
+  },
+  data(){
+    return {
+      myfrom: 0,
+      myto: 0
     }
   },
   methods: {

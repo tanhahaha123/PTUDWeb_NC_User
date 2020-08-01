@@ -13,6 +13,7 @@
             }}</span>
             <span class="count">
               <basix-counter
+                ref="childBasixCounter"
                 :from="25698"
                 :to="Number(counter)"
                 :duration="4000"
@@ -36,7 +37,7 @@
 import { AnimateNumber } from "@/components";
 export default {
   name: "info-icon-box",
-  props: ["icon", "symbol", "counter", "title", "bgclass", "hasPercentage"]
+  props: ["icon", "symbol", "counter", "title", "bgclass", "hasPercentage", "zStart"],
   // props: {
   //     symbol: String,
   //     counter: Number,
@@ -45,5 +46,10 @@ export default {
   //     bgclass: String,
   //     hasPercentage: String
   // }
+  methods: {
+    daylamethod(){
+      return;
+    }
+  }
 };
 </script>

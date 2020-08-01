@@ -21,6 +21,9 @@ export default {
   },
   created(){
     this.$store.dispatch('getThongTinKhachHang');
+  },
+  destroyed(){
+    this.$store.dispatch('resetThongTinKhachHang');
   }
 };
 </script>

@@ -1,10 +1,11 @@
 <template>
   <div class="content">
-    <div class="md-layout">
+    <div v-if="zShow" class="md-layout">
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
         <info
+          ref="childInfo1"
           icon="icon-lg pe-7f-1"
           bgclass="my-background-color-1"
           symbol="▩"
@@ -17,6 +18,7 @@
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
         <info
+          ref="childInfo2"
           icon="icon-lg pe-7f-2"
           bgclass="my-background-color-2"
           symbol="▨"
@@ -29,6 +31,7 @@
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
         <info
+          ref="childInfo3"
           icon="icon-lg pe-7f-3"
           bgclass="my-background-color-3"
           symbol="▧"
@@ -42,7 +45,7 @@
       >
         <md-card style="margin: 50px 0;">
           <md-card-header data-background-color="red">
-            <h4 class="title">Danh sách TK thanh toán</h4>
+            <h5 class="title">Danh sách TK thanh toán</h5>
             <p class="category">sử dụng thanh toán các chi tiêu của bạn</p>
           </md-card-header>
           <md-card-content>
@@ -57,7 +60,7 @@
       >
         <md-card style="margin: 50px 0;">
           <md-card-header data-background-color="green">
-            <h4 class="title">Danh sách tài khoản tiết kiệm</h4>
+            <h5 class="title">Danh sách tài khoản tiết kiệm</h5>
             <p class="category">
               tài khoản tiết kiệm dùng để sinh lãi từ ngân hàng chúng tôi
             </p>
@@ -84,22 +87,24 @@ export default {
     SavingAccountsTable
   },
   data() {
-    return {};
+    return {
+      zShow: false
+    };
   },
-  mounted() {
-    this.$store.dispatch("getAccountsList");
-    this.$store.dispatch(
-      "getUserPaymentDetail",
-      this.$store.state.userPaymentNumber
-    );
-    this.$store.dispatch(
-      "getUserSavingDetail",
-      this.$store.state.userSavingNumbers
-    );
-    // console.log(this.$store.state.accountsList);
-    // console.log(this.$store.state.userSavingNumbers);
-    console.log(this.userSavingDetail.length);
-    console.log(this.userPaymentDetail.SoDu);
+  created() {
+
+    (async ()=>{
+      await this.$store.dispatch("getAccountsList");
+      await this.$store.dispatch(
+        "getUserPaymentDetail",
+        this.$store.state.userPaymentNumber
+      );
+      await this.$store.dispatch(
+        "getUserSavingDetail",
+        this.$store.state.userSavingNumbers
+      );
+      this.zShow = true;
+    })();
   },
   computed: {
     ...mapState(["userSavingDetail"]),

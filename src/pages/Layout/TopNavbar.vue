@@ -53,8 +53,8 @@
                     </md-button>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li
-                        v-for="item in debtReminderTable.destination"
-                        :key="item.NoiDung"
+                        v-for="(item, index) in debtReminderTable.destination"
+                        :key="index"
                       >
                         <router-link
                           :to="{

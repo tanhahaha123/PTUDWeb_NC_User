@@ -22,7 +22,7 @@ function login(username, password, captcha) {
     })
   };
 
-  console.log("Captcha: ", captcha);
+  // console.log("Captcha: ", captcha);
 
   return fetch(`https://bank25.herokuapp.com/api/auth/signin`, requestOptions)
     .then(handleResponse)
@@ -39,7 +39,7 @@ function login(username, password, captcha) {
 }
 // Đăng xuất
 function logout() {
-  console.log(localStorage.getItem("user"));
+  // console.log(localStorage.getItem("user"));
   // remove user from local storage to log user out
   localStorage.removeItem("user");
 }
@@ -133,7 +133,7 @@ function forgetPassword1(codeotp) {
 }
 
 function changePassword(password) {
-  console.log("HERE: ChangePassword");
+  // console.log("HERE: ChangePassword");
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const payload = {
     TenDangNhap: userStorage.TenDangNhap + "",
