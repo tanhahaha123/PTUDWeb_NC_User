@@ -1,3 +1,4 @@
+import store from "../store/index.js";
 import VueRouter from "vue-router";
 
 import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
@@ -8,10 +9,11 @@ import TranferList from "@/pages/TranferList.vue";
 import MoneyTranfer from "@/pages/MoneyTranfer.vue";
 import Notifications from "@/pages/Notifications.vue";
 import TransactionsHistory from "@/pages/TransactionsHistory.vue";
+import DebtReminder from "@/pages/DebtReminder.vue";
 
 //Nhắc nợ
-import DebtReminder from "@/pages/DebtReminder/DebtReminderTable.vue";
-import AddDebtReminder from "@/pages/DebtReminder/AddDebtReminder.vue";
+// import DebtReminder from "@/pages/DebtReminder/DebtReminderTable.vue";
+// import AddDebtReminder from "@/pages/DebtReminder/AddDebtReminder.vue";
 
 //Authentication
 import Register from "@/pages/Authentication/Register.vue";
@@ -43,6 +45,9 @@ const routes = [
         path: "accounts",
         name: "Accounts List",
         component: AccountsList
+        // beforeEnter: async (to,from,next)=>{
+        //   next();
+        // }
       },
       {
         path: "tranferList",
@@ -62,16 +67,16 @@ const routes = [
         },
         component: DebtReminder
       },
-      {
-        path: "add-debt-reminder",
-        name: "Add Debt Reminder",
-        component: AddDebtReminder
-      },
-      {
-        path: "notifications",
-        name: "Notifications",
-        component: Notifications
-      },
+      // {
+      //   path: "add-debt-reminder",
+      //   name: "Add Debt Reminder",
+      //   component: AddDebtReminder
+      // },
+      // {
+      //   path: "notifications",
+      //   name: "Notifications",
+      //   component: Notifications
+      // },
       {
         path: "transactions",
         name: "Transactions History",
@@ -112,5 +117,12 @@ router.beforeEach((to, from, next) => {
   }
   next();
 });
+
+// function UserProfileBeforeEnter(to,from,next){
+//   (async ()=>{
+//     await new Promise(resolve => setTimeout(resolve, 2000));
+//     next();
+//   })();
+// };
 
 export { router };

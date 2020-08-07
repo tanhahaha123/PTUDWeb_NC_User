@@ -13,7 +13,6 @@
             }}</span>
             <span class="count">
               <basix-counter
-                ref="childBasixCounter"
                 :from="25698"
                 :to="Number(counter)"
                 :duration="4000"

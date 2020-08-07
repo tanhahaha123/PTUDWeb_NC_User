@@ -30,16 +30,28 @@ import DanhSachThuHuongTable from './DanhSachThuHuong/DanhSachThuHuongTable.vue'
 import ChuyenKhoanCungNganHang from './ChuyenKhoan/ChuyenKhoanCungNganHang.vue';
 import ChuyenKhoanKhacNganHang from './ChuyenKhoan/ChuyenKhoanKhacNganHang.vue';
 
-Vue.component( 'basix-counter', AnimateNumber )
-Vue.component( 'tk-thanh-toan-table', TKThanhToanTable )
-Vue.component( 'tk-tiet-kiem-table', TKTietKiemTable )
+//Đăng ký component Quản lý nhắc nợ
+import NhacNoChuaThanhToan from './QuanLyNhacNo/NhacNoChuaThanhToan.vue';
+import NhacNoDaTao from './QuanLyNhacNo/NhacNoDaTao.vue';
+import ThongBaoNhacNo from './QuanLyNhacNo/ThongBaoNhacNo.vue';
+import TaoNhacNo from './QuanLyNhacNo/TaoNhacNo.vue';
+
+Vue.component( 'basix-counter', AnimateNumber );
+Vue.component( 'tk-thanh-toan-table', TKThanhToanTable );
+Vue.component( 'tk-tiet-kiem-table', TKTietKiemTable );
 
 //Danh Sách Thụ Hưởng
-Vue.component( 'danh-sach-thu-huong-table', DanhSachThuHuongTable )
+Vue.component( 'danh-sach-thu-huong-table', DanhSachThuHuongTable );
 
 //Chuyển Khoản
-Vue.component( 'chuyen-khoan-cung-ngan-hang', ChuyenKhoanCungNganHang )
-Vue.component( 'chuyen-khoan-khac-ngan-hang', ChuyenKhoanKhacNganHang )
+Vue.component( 'chuyen-khoan-cung-ngan-hang', ChuyenKhoanCungNganHang );
+Vue.component( 'chuyen-khoan-khac-ngan-hang', ChuyenKhoanKhacNganHang );
+
+//Quản lý nhắc nợ
+Vue.component( 'nhac-no-chua-thanh-toan', NhacNoChuaThanhToan );
+Vue.component( 'nhac-no-da-tao', NhacNoDaTao );
+Vue.component( 'thong-bao-nhac-no', ThongBaoNhacNo );
+Vue.component( 'tao-nhac-no', TaoNhacNo );
 
 
 // export {
@@ -94,6 +106,12 @@ export {
   //component Chuyển Khoản
   ChuyenKhoanCungNganHang,
   ChuyenKhoanKhacNganHang,
+
+   //component Quản lý nhắc nợ
+  NhacNoChuaThanhToan,
+  NhacNoDaTao,
+  ThongBaoNhacNo,
+  TaoNhacNo,
 
     //component for DebtReminder
   DebtReminderTable,
