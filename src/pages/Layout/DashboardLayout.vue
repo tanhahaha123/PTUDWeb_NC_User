@@ -29,12 +29,12 @@
       </sidebar-link>
       <sidebar-link to="/debtReminder">
         <md-icon>more_time</md-icon>
-        <p>Nhắc nợ</p>
+        <p>Quản lý nhắc nợ</p>
       </sidebar-link>
-      <sidebar-link to="/notifications">
+      <!-- <sidebar-link to="/notifications">
         <md-icon>notifications</md-icon>
         <p>Thông báo</p>
-      </sidebar-link>
+      </sidebar-link> -->
       <sidebar-link to="/transactions">
         <md-icon>receipt_long</md-icon>
         <p>Lịch sử giao dịch</p>

@@ -1,45 +1,50 @@
 <template>
   <div class="content">
-    <div v-if="zShow" class="md-layout">
+    <div class="md-layout">
+      <template v-if="zShow">
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
+        key="4"
       >
         <info
           ref="childInfo1"
           icon="icon-lg pe-7f-1"
           bgclass="my-background-color-1"
           symbol="▩"
-          :counter="accountsList.length"
+          :counter="DanhSachTaiKhoanThanhToanChiTiet.length+DanhSachTaiKhoanTietKiemChiTiet.length"
           title="Tổng số tài khoản"
         >
         </info>
       </div>
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
+        key="5"
       >
         <info
           ref="childInfo2"
           icon="icon-lg pe-7f-2"
           bgclass="my-background-color-2"
           symbol="▨"
-          :counter="userPaymentDetail.length"
+          :counter="DanhSachTaiKhoanThanhToanChiTiet.length"
           title="Tài khoản thanh toán"
         >
         </info>
       </div>
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
+        key="6"
       >
         <info
           ref="childInfo3"
           icon="icon-lg pe-7f-3"
           bgclass="my-background-color-3"
           symbol="▧"
-          :counter="userSavingDetail.length"
+          :counter="DanhSachTaiKhoanTietKiemChiTiet.length"
           title="Tài khoản tiết kiệm"
         >
         </info>
       </div>
+      </template>
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-33"
       >
@@ -50,7 +55,7 @@
           </md-card-header>
           <md-card-content>
             <payment-accounts-table
-              :userPaymentDetail="userPaymentDetail"
+              :userPaymentDetail="DanhSachTaiKhoanThanhToanChiTiet"
             ></payment-accounts-table>
           </md-card-content>
         </md-card>
@@ -67,7 +72,7 @@
           </md-card-header>
           <md-card-content>
             <saving-accounts-table
-              :userSavingDetail="userSavingDetail"
+              :userSavingDetail="DanhSachTaiKhoanTietKiemChiTiet"
             ></saving-accounts-table>
           </md-card-content>
         </md-card>
@@ -92,24 +97,24 @@ export default {
     };
   },
   created() {
-
     (async ()=>{
-      await this.$store.dispatch("getAccountsList");
-      await this.$store.dispatch(
-        "getUserPaymentDetail",
+      let [Result1, Result2] = await Promise.all([this.$store.dispatch(
+        "getTaiKhoanThanhToanChiTiet",
         this.$store.state.userPaymentNumber
-      );
-      await this.$store.dispatch(
-        "getUserSavingDetail",
+      ), this.$store.dispatch(
+        "getTaiKhoanTietKiemChiTiet",
         this.$store.state.userSavingNumbers
-      );
+      )]);
       this.zShow = true;
     })();
   },
   computed: {
-    ...mapState(["userSavingDetail"]),
-    ...mapState(["userPaymentDetail"]),
-    ...mapState(["accountsList"])
+    ...mapState(["DanhSachTaiKhoanThanhToanChiTiet"]),
+    ...mapState(["DanhSachTaiKhoanTietKiemChiTiet"])
+  },
+  destroyed(){
+    this.$store.dispatch('resetTaiKhoanThanhToanChiTiet');
+    this.$store.dispatch('resetTaiKhoanTietKiemChiTiet');
   }
 };
 </script>

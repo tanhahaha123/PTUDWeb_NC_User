@@ -140,7 +140,7 @@ export default new Vuex.Store({
     account
   },
   state: {
-    idTaiKhoanKhachHang: null, //============LẤY TỪ TOKEN========== 
+    idTaiKhoanKhachHang: null, //============LẤY TỪ TOKEN==========
     //tables cho TransactionHistory
     receiveHisTable: [],
     tranferHisTable: [],
@@ -197,6 +197,12 @@ export default new Vuex.Store({
     errChuyenKhoanInternal: null,
     errChuyenKhoanExternal: null,
     DanhSachTenNganHangExternal: null,
+    DanhSachTaiKhoanThanhToanChiTiet: [],
+    DanhSachTaiKhoanTietKiemChiTiet: [],
+    LichSuNhacNo: [],
+    NhacNoChuaThanhToan: [],
+    NhacNoDaTao: [],
+    DanhSachNguoiThuHuongNhacNo: [],
     
     //query:''
 
@@ -296,36 +302,36 @@ export default new Vuex.Store({
     GET_ACCOUNTS_LIST(state, payload) {
       state.accountsList = payload;
     },
-    GET_USER_PAYMENT_NUMBER(state) {
-      const type = "thanh toán";
-      state.userPaymentNumber = [];
-      for (const i in state.accountsList) {
-        if (state.accountsList[i].LoaiTaiKhoan == type)
-          state.userPaymentNumber.push(state.accountsList[i].SoTaiKhoan);
-      }
-    },
-    GET_USER_SAVING_NUMBERS(state) {
-      const type = "tiết kiệm";
-      state.userSavingNumbers = [];
-      for (const i in state.accountsList) {
-        if (state.accountsList[i].LoaiTaiKhoan == type)
-          state.userSavingNumbers.push(state.accountsList[i].SoTaiKhoan);
-      }
-      //state.userSavingNumber=stk;
-    },
-    GET_USER_PAYMENT_DETAIL(state, payload) {
-      for(const i in payload){
-        payload[i].stt=parseInt(i)+1;
-      }
-      state.userPaymentDetail=payload;
-    },
-    GET_USER_SAVING_DETAIL(state,payload){
-      for(const i in payload){
-        payload[i].stt=parseInt(i)+1;
-        payload[i].NgayGui=moment(payload[i].NgayGui, 'YYYY-MM-DD').format('DD/MM/YYYY');
-      }
-      state.userSavingDetail=payload;
-    },
+    // GET_USER_PAYMENT_NUMBER(state) {
+    //   const type = "thanh toán";
+    //   state.userPaymentNumber = [];
+    //   for (const i in state.accountsList) {
+    //     if (state.accountsList[i].LoaiTaiKhoan == type)
+    //       state.userPaymentNumber.push(state.accountsList[i].SoTaiKhoan);
+    //   }
+    // },
+    // GET_USER_SAVING_NUMBERS(state) {
+    //   const type = "tiết kiệm";
+    //   state.userSavingNumbers = [];
+    //   for (const i in state.accountsList) {
+    //     if (state.accountsList[i].LoaiTaiKhoan == type)
+    //       state.userSavingNumbers.push(state.accountsList[i].SoTaiKhoan);
+    //   }
+    //   //state.userSavingNumber=stk;
+    // },
+    // GET_USER_PAYMENT_DETAIL(state, payload) {
+    //   for(const i in payload){
+    //     payload[i].stt=parseInt(i)+1;
+    //   }
+    //   state.userPaymentDetail=payload;
+    // },
+    // GET_USER_SAVING_DETAIL(state,payload){
+    //   for(const i in payload){
+    //     payload[i].stt=parseInt(i)+1;
+    //     payload[i].NgayGui=moment(payload[i].NgayGui, 'YYYY-MM-DD').format('DD/MM/YYYY');
+    //   }
+    //   state.userSavingDetail=payload;
+    // },
 
 
     // SET_USER_ID(state,payload){
@@ -448,6 +454,43 @@ export default new Vuex.Store({
     },
     SET_DANH_SACH_TEN_NGAN_HANG_EXTERNAL(state,payload){
       state.DanhSachTenNganHangExternal = payload;
+    },
+    SET_TAI_KHOAN_THANH_TOAN_CHI_TIET(state,payload){
+      for(const i in payload){
+        payload[i].stt=parseInt(i)+1;
+        var n = payload[i].SoDu.toString().split('').reverse().join("");
+        var n2 = n.replace(/\d\d\d(?!$)/g, "$&.");    
+        payload[i].SoDu = n2.split('').reverse().join('')+' VNĐ';
+      }
+      state.DanhSachTaiKhoanThanhToanChiTiet = payload;
+    },
+    SET_TAI_KHOAN_TIET_KIEM_CHI_TIET(state,payload){
+      for(const i in payload){
+        payload[i].stt=parseInt(i)+1;
+        payload[i].NgayGui=moment(payload[i].NgayGui, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        var n = payload[i].SoDu.toString().split('').reverse().join("");
+        var n2 = n.replace(/\d\d\d(?!$)/g, "$&.");    
+        payload[i].SoDu = n2.split('').reverse().join('')+' VNĐ';
+      }
+      state.DanhSachTaiKhoanTietKiemChiTiet = payload;
+    },
+    RESET_TAI_KHOAN_THANH_TOAN_CHI_TIET(state,payload){
+      state.DanhSachTaiKhoanThanhToanChiTiet = [];
+    },
+    RESET_TAI_KHOAN_TIET_KIEM_CHI_TIET(state,payload){
+      state.DanhSachTaiKhoanTietKiemChiTiet = [];
+    },
+    SET_LICH_SU_NHAC_NO(state,payload){
+      state.LichSuNhacNo = payload;
+    },
+    SET_NHAC_NO_CHUA_THANH_TOAN(state,payload){
+      state.NhacNoChuaThanhToan = payload;
+    },
+    SET_NHAC_NO_DA_TAO(state,payload){
+      state.NhacNoDaTao = payload;
+    },
+    SET_DANH_SACH_NGUOI_THU_HUONG_NHAC_NO(state,payload){
+      state.DanhSachNguoiThuHuongNhacNo = payload;
     },
 
     GET_DEBT_REMINDER_REQUEST(state, payload){
@@ -956,6 +999,178 @@ export default new Vuex.Store({
       ctx.commit('SET_ERR_DOI_MAT_KHAU',null);
       ctx.commit('SET_DOI_MAT_KHAU_THANH_CONG',false);
       ctx.commit('SET_DOI_MAT_KHAU_THAT_BAI',false);
+    },
+    async getTaiKhoanThanhToanChiTiet(ctx){
+      let res = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-customer/my-account-customer/payment-account-detail',
+        params: {
+          "idTaiKhoanKhachHang": ctx.state.idTaiKhoanKhachHang
+        }
+      });
+      ctx.commit('SET_TAI_KHOAN_THANH_TOAN_CHI_TIET',Object.values(res.data));
+    },
+    async getTaiKhoanTietKiemChiTiet(ctx){
+      let res = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-customer/my-account-customer/saving-account-detail',
+        params: {
+          "idTaiKhoanKhachHang": ctx.state.idTaiKhoanKhachHang
+        }
+      });
+      ctx.commit('SET_TAI_KHOAN_TIET_KIEM_CHI_TIET',Object.values(res.data));
+    },
+    resetTaiKhoanThanhToanChiTiet(ctx){
+      ctx.commit('RESET_TAI_KHOAN_THANH_TOAN_CHI_TIET');
+    },
+    resetTaiKhoanTietKiemChiTiet(ctx){
+      ctx.commit('RESET_TAI_KHOAN_TIET_KIEM_CHI_TIET');
+    },
+    async getLichSuNhacNo(ctx){
+      let res1 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-customer/my-account-customer/payment-account',
+        params: {
+          "idTaiKhoanKhachHang": ctx.state.idTaiKhoanKhachHang
+        }
+      });
+      let res2 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/history-debt',
+        params: {
+          "MyAccountNumber": res1.data[0].SoTaiKhoan
+        }
+      });
+      ctx.commit('SET_LICH_SU_NHAC_NO',Object.values(res2.data));
+      return res1.data[0].SoTaiKhoan;
+    },
+    resetLichSuNhacNo(ctx){
+      ctx.commit('SET_LICH_SU_NHAC_NO',[]);
+    },
+    async getNhacNoChuaThanhToan(ctx){
+      let res1 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-customer/my-account-customer/payment-account',
+        params: {
+          "idTaiKhoanKhachHang": ctx.state.idTaiKhoanKhachHang
+        }
+      });
+      let res2 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/unpaid-debt',
+        params: {
+          "MyAccountNumber": res1.data[0].SoTaiKhoan
+        }
+      });
+      ctx.commit('SET_NHAC_NO_CHUA_THANH_TOAN',Object.values(res2.data));
+      return res1.data[0].SoTaiKhoan;
+    },
+    resetNhacNoChuaThanhToan(ctx){
+      ctx.commit('SET_NHAC_NO_CHUA_THANH_TOAN',[]);
+    },
+    async getNhacNoDaTao(ctx){
+      let res1 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-customer/my-account-customer/payment-account',
+        params: {
+          "idTaiKhoanKhachHang": ctx.state.idTaiKhoanKhachHang
+        }
+      });
+      let res2 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/created-debt',
+        params: {
+          "MyAccountNumber": res1.data[0].SoTaiKhoan
+        }
+      });
+      ctx.commit('SET_NHAC_NO_DA_TAO',Object.values(res2.data));
+      return res1.data[0].SoTaiKhoan;
+    },
+    resetNhacNoDaTao(ctx){
+      ctx.commit('SET_NHAC_NO_DA_TAO',[]);
+    },
+    async getDanhSachThuHuongNhacNo(ctx){//Lấy danh sách người thụ hưởng 
+      ctx.commit('SET_DANH_SACH_NGUOI_THU_HUONG_NHAC_NO',[]);
+      let res1 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-customer/my-account-customer/payment-account',
+        params: {
+          "idTaiKhoanKhachHang": ctx.state.idTaiKhoanKhachHang
+        }
+      });
+      let res2 = await MyAxios({
+        method: 'get',
+        url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/receiver-info',
+        params: {
+          "MyAccountNumber": res1.data[0].SoTaiKhoan
+        }
+      });
+      ctx.commit('SET_DANH_SACH_NGUOI_THU_HUONG_NHAC_NO',res2.data);
+    },
+    resetDanhSachThuHuongNhacNo(ctx){
+      ctx.commit('SET_DANH_SACH_NGUOI_THU_HUONG_NHAC_NO',[]);
+    },
+    async getTenTaiKhoanNguoiHuongNhacNo(ctx,AccountNumberTarget){//Lấy tên người thụ hưởng ko dùng state, mutation. đưa promise sang component xử lý
+      let res;
+      try {
+        res = await MyAxios({
+          method: 'get',
+          url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/get-fullname',
+          params: {
+            "MyAccountNumber": AccountNumberTarget
+          }
+        });
+      }catch(err){
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        return null;
+      }
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      return res.data.TenKhachHang;
+    },
+    async taoNhacNo(ctx,payload){
+      try {
+        await MyAxios({
+          method: 'post',
+          url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/debts-create',
+          data: payload
+        });
+      }catch(err){
+        throw new Error(400);
+      }
+    },
+    async huyNhacNo(ctx,payload){
+      try {
+        await MyAxios({
+          method: 'post',
+          url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/debts-delete',
+          data: payload
+        });
+      }catch(err){
+        throw new Error(400);
+      }
+    },
+    async getOTPThanhToanNhacNo(ctx,payload){
+      try {
+        await MyAxios({
+          method: 'get',
+          url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/debts-payment',
+          params: payload
+        });
+      }catch(err){
+        throw new Error(400);
+      }
+    },
+    async ThanhToanNhacNo(ctx,payload){
+      try {
+        await MyAxios({
+          method: 'post',
+          url: 'https://bank25.herokuapp.com/api/internal/account-bank/my-account-number/debts-payment',
+          data: payload
+        });
+      }catch(err){
+
+        throw new Error(err.response.data.err);
+      }
     },
 
     // lấy thông tin ghi nợ của khách hàng

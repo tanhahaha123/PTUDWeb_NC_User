@@ -1,6 +1,5 @@
 <template>
   <animate-number
-    ref="myNum"
     mode="auto"
     :from="from"
     :to="to"
@@ -31,8 +30,6 @@ export default {
   },
   data(){
     return {
-      myfrom: 0,
-      myto: 0
     }
   },
   methods: {
@@ -40,7 +37,7 @@ export default {
       return num.toFixed(2);
     },
     startAnimate: function() {
-      this.$refs.myNum.start();
+      // this.$refs.myNum.start();
     }
   }
 };

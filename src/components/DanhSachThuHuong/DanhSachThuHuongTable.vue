@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition name="bounce" mode="out-in">
-      <md-table v-if="displayDanhSachThuHuong==true" v-model="themsttDanhSachNguoiThuHuong" :table-header-color="tableHeaderColor">
+      <md-table v-if="displayDanhSachThuHuong==true" v-model="themsttDanhSachNguoiThuHuong" :table-header-color="tableHeaderColor" md-fixed-header>
         <md-table-row slot="md-table-row" slot-scope="{ item }">
           <md-table-cell md-label="STT" style="font-size: 1.1rem">{{ item.STT }}</md-table-cell>
           <md-table-cell md-label="Tên gợi nhớ" style="font-size: 1.1rem">{{ item.TenGoiNho }}</md-table-cell>

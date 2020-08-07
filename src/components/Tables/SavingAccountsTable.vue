@@ -1,11 +1,11 @@
 <template>
   <div>
-    <md-table table-header-color="green" v-model="userSavingDetail">
+    <md-table table-header-color="green" v-model="userSavingDetail" md-fixed-header>
       <md-table-row slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="STT">{{ item.stt }}</md-table-cell>
-        <md-table-cell md-label="Số TK">{{
+        <md-table-cell md-label="Số TK"><span style="font-weight: bold;">{{
           item.SoTaiKhoanTietKiem
-        }}</md-table-cell>
+        }}</span></md-table-cell>
         <md-table-cell md-label="Số dư">{{ item.SoDu }}</md-table-cell>
         <md-table-cell md-label="Ngày gửi">{{ item.NgayGui }}</md-table-cell>
         <md-table-cell md-label="Kỳ hạn gửi">{{ item.KyHanGui }}</md-table-cell>
