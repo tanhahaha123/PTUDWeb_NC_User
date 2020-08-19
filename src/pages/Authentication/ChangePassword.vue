@@ -9,10 +9,9 @@
           >
             <form @submit.prevent="handleSubmit">
               <login-card header-color="green">
-                <h4 slot="title" class="card-title">Forget Password</h4>
+                <h4 slot="title" class="card-title">Thay đổi mật khẩu</h4>
                 <p slot="description" class="description md-body-1">
-                  Don't worry. Reseting your password is easy, just tell us the
-                  email address you registered.
+                  Vui lòng thay đổi thành mật khẩu mới
                 </p>
 
                 <!-- Lỗi khi kết nối backend -->
@@ -27,7 +26,7 @@
                   :md-toggle-password="false"
                 >
                   <md-icon>email</md-icon>
-                  <label> Password</label>
+                  <label> Mật khẩu</label>
                   <md-input
                     name="password"
                     v-validate="'required|min:6'"
@@ -46,7 +45,7 @@
                   :md-toggle-password="false"
                 >
                   <md-icon>email</md-icon>
-                  <label> Verify Password</label>
+                  <label> Xác nhận mật khẩu</label>
                   <md-input
                     name="verifypassword"
                     v-validate="'required|min:6|confirmed:password'"
@@ -60,7 +59,7 @@
                 <div slot="footer">
                   <!-- Đăng nhập button -->
                   <md-button class="md-primary md-success" type="submit">
-                    Send
+                    Tiếp tục
                   </md-button>
                   <!-- Đăng kí btt -->
                 </div>

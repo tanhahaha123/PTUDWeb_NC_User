@@ -9,7 +9,7 @@
           >
             <form @submit.prevent="handleSubmit">
               <login-card header-color="green">
-                <h4 slot="title" class="card-title">Forget Password</h4>
+                <h4 slot="title" class="card-title">Quên mật khẩu</h4>
 
                 <!-- Lỗi khi kết nối backend -->
                 <md-content v-if="message" :class="type" slot="inputs">
@@ -32,7 +32,7 @@
                 <div slot="footer">
                   <!-- Đăng nhập button -->
                   <md-button class="md-primary md-success" type="submit">
-                    Dashboard
+                    Tiếp tục
                   </md-button>
                   <!-- Đăng kí btt -->
                 </div>

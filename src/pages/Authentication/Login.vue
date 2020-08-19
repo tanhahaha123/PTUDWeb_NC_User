@@ -33,7 +33,7 @@
                   <i class="fab fa-google-plus-g"></i>
                 </md-button>
                 <p slot="description" class="description">
-                  Or
+                  Hoặc
                 </p>
 
                 <!-- Lỗi khi kết nối backend -->
@@ -121,7 +121,7 @@
                   slot="forget"
                   class="md-simple md-transparent"
                 >
-                  <p class="forget">Fortget password?</p>
+                  <p class="forget">Quên mật khẩu?</p>
                 </md-button>
               </login-card>
             </form>

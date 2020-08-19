@@ -9,10 +9,9 @@
           >
             <form @submit.prevent="handleSubmit">
               <login-card header-color="green">
-                <h4 slot="title" class="card-title">Forget Password</h4>
+                <h4 slot="title" class="card-title">Quên mật khẩu</h4>
                 <p slot="description" class="description md-body-1">
-                  Don't worry. Reseting your password is easy, just tell us the
-                  email address you registered.
+                  Đừng lo lắng. Bạn vui lòng nhập email và tài khoản đã đăng kí ở đây.
                 </p>
 
                 <!-- Lỗi khi kết nối backend -->
@@ -23,7 +22,7 @@
                 <!-- Username -->
                 <md-field class="md-form-group" slot="inputs">
                   <md-icon>email</md-icon>
-                  <label> Username</label>
+                  <label> Tên đăng nhập</label>
                   <md-input
                     name="username"
                     v-validate="'required'"
@@ -51,7 +50,7 @@
                 <div slot="footer">
                   <!-- Đăng nhập button -->
                   <md-button class="md-primary md-success" type="submit">
-                    Send
+                    Tiếp tục
                   </md-button>
                   <!-- Đăng kí btt -->
                 </div>

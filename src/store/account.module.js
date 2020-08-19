@@ -124,7 +124,8 @@ const actions = {
         // console.log("changePasswordSuccess");
         commit("changePasswordSuccess", user);
         dispatch("alert/success", user.reply, { root: true });
-        router.push("dashboard");
+        //Hiển thị thông báo
+        router.push("login");
       },
       error => {
         // console.log("changePasswordFailure");
