@@ -463,6 +463,11 @@
           this.payloadAmount = null;
           this.payloadMessage = null;
           this.displayThanhToanNhacNo = false;
+
+          this.OTPCode = null;
+          this.displayThanhToanNhacNo = false;
+          this.displayOTP = false;
+
           this.$notify({
             message: "Thanh toán nhắc nợ thành công",
             icon: "add_alert",
@@ -479,6 +484,17 @@
             verticalAlign: 'bottom',
             type: "danger"
           });
+
+          this.payloadDebtsID = null;
+          this.payloadMyAccountNumber = null;
+          this.payloadDestinationAccountNumber = null;  
+          this.payloadAmount = null;
+          this.payloadMessage = null;
+          this.displayThanhToanNhacNo = false;
+
+          this.OTPCode = null;
+          this.displayThanhToanNhacNo = false;
+          this.displayOTP = false;
         });
       },
       handleQuayLaiThanhToanNhacNo(){
