@@ -141,6 +141,7 @@ function changePassword(password) {
     OTPCode: userStorage.OTPCode,
     MatKhau: password
   };
+  localStorage.removeItem("user");
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
